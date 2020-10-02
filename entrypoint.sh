@@ -28,8 +28,8 @@ git clone "$REPO_URL"
 cd "$INPUT_PACKAGE_NAME"
 
 echo "Setting version: ${NEW_RELEASE}"
-sed -i "s/pkgver=.*$/pkgver=${NEW_RELEASE}/" PKGBUILD
-sed -i "s/pkgrel=.*$/pkgrel=1/" PKGBUILD
+sed -i -E "s/pkgver=.*$/pkgver=${NEW_RELEASE}/" PKGBUILD
+sed -i -E "s/pkgrel=.*$/pkgrel=1/" PKGBUILD
 perl -i -0pe "s/sha256sums=[\s\S][^\)]*\)/$(makepkg -g 2>/dev/null)/" PKGBUILD
 
 echo "::endgroup::Setup"
